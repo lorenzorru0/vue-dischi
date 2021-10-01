@@ -1,0 +1,6 @@
+/* Import variable */
+@import './variable.scss';
+
+.container {
+    max-width: $widthContainer;
+}
