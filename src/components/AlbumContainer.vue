@@ -34,6 +34,7 @@ export default {
 @import '../assets/style/variable.scss';
 
 section {
+    height: calc(100vh - 5.75rem);
     background-color: $colorBgBody;
     padding: 3.125rem 0;
 
