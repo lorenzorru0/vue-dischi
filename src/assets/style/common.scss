@@ -1,6 +1,9 @@
 /* Import variable */
 @import './variable.scss';
 
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 /* Reset */
 * {
     box-sizing: border-box;
@@ -9,6 +12,10 @@
 }
 
 /* Common */
+body {
+    font-family: 'Roboto', sans-serif;
+}
 .container {
     max-width: $widthContainer;
+    margin: 0 auto;
 }
