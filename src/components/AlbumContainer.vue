@@ -17,14 +17,21 @@ export default {
     },
     data() {
         return {
-            albums: []
+            albums: [],
+            albumGenre: []
         }
     },
     created() {
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then( (res) => {
                 this.albums = res.data.response;
-                console.log(this.albums)
+                console.log(this.albums);
+                this.albums.forEach((elm) => {
+                    if ( !this.albumGenre.includes(elm.genre)) { 
+                        this.albumGenre.push(elm.genre);
+                    }
+                });
+                this.$emit('emitAlbumGenre', this.albumGenre);
             });
     }
 }
@@ -34,7 +41,7 @@ export default {
 @import '../assets/style/variable.scss';
 
 section {
-    height: calc(100vh - 5.75rem);
+    min-height: calc(100vh - 5.75rem);
     background-color: $colorBgBody;
     padding: 3.125rem 0;
 

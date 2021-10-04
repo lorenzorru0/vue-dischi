@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header :logo="require('./assets/img/spotify-logo.png')" />
-    <AlbumContainer/>
+    <Header :logo="require('./assets/img/spotify-logo.png')" :albumGenre='albumGenre'/>
+    <AlbumContainer @emitAlbumGenre='getAlbumGenre' />
   </div>
 </template>
 
@@ -15,6 +15,16 @@ export default {
   components: {
     Header,
     AlbumContainer
+  },
+  data() {
+    return {
+      albumGenre: []
+    }
+  },
+  methods: {
+    getAlbumGenre(genres) {
+      this.albumGenre = genres;
+    }
   }
 }
 </script>
