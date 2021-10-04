@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="container">
-            <Album v-for="(album, index) in albums" :key="index" :album="album"/>
+            <Album v-for="(album, index) in albumFiltered" :key="index" :album="album"/>
         </div>
     </section>
 </template>
@@ -21,11 +21,23 @@ export default {
             albumGenre: []
         }
     },
+    props: ['currentGenre'],
+    computed: {
+        albumFiltered() {
+            return this.albums.filter( (elm) => {
+                if ( this.currentGenre == '' ) {
+                    return true;
+                } else {
+                    return elm.genre == this.currentGenre;
+                }
+                
+            });
+        }
+    },
     created() {
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then( (res) => {
                 this.albums = res.data.response;
-                console.log(this.albums);
                 this.albums.forEach((elm) => {
                     if ( !this.albumGenre.includes(elm.genre)) { 
                         this.albumGenre.push(elm.genre);
@@ -33,7 +45,7 @@ export default {
                 });
                 this.$emit('emitAlbumGenre', this.albumGenre);
             });
-    }
+    },
 }
 </script>
 

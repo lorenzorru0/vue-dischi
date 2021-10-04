@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header :logo="require('./assets/img/spotify-logo.png')" :albumGenre='albumGenre'/>
-    <AlbumContainer @emitAlbumGenre='getAlbumGenre' />
+    <Header :logo="require('./assets/img/spotify-logo.png')" :albumGenre='albumGenre' @currentGenre='getCurrentGenre'/>
+    <AlbumContainer @emitAlbumGenre='getAlbumGenre' :currentGenre='currentGenre'/>
   </div>
 </template>
 
@@ -18,12 +18,17 @@ export default {
   },
   data() {
     return {
-      albumGenre: []
+      albumGenre: [],
+      currentGenre: ''
     }
   },
   methods: {
     getAlbumGenre(genres) {
       this.albumGenre = genres;
+    },
+    getCurrentGenre(currentGenre) {
+      this.currentGenre = currentGenre;
+      console.log(this.currentGenre);
     }
   }
 }

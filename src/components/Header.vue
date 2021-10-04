@@ -1,7 +1,7 @@
 <template>
     <header>
         <img :src="logo" alt="Logo app">
-        <select name="filterGenre" id="filterGenre">
+        <select name="selectGenre" id="selectGenre" v-model="genreSelected" @change="$emit('currentGenre', genreSelected)">
             <option value="">Select genre</option>
             <option v-for="(genre, index) in albumGenre" :key="index" :value="genre">{{genre}}</option>
         </select>
@@ -11,6 +11,11 @@
 <script>
 export default {
     name: 'Header',
+    data() {
+        return {
+            genreSelected: ''
+        }
+    },
     props: {
         logo: String,
         albumGenre: Array
