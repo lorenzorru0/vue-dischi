@@ -7,6 +7,11 @@
                 <option value="">All genre</option>
                 <option v-for="(genre, index) in albumGenre" :key="index" :value="genre">{{genre}}</option>
             </select>
+            <label for="selectAuthor">Select Authors</label>
+            <select name="selectAuthor" id="selectAuthor" v-model="authorSelected" @change="$emit('currentAuthor', authorSelected)">
+                <option value="">All authors</option>
+                <option v-for="(author, index) in albumAuthors" :key="index" :value="author">{{author}}</option>
+            </select>
         </div>
     </header>
 </template>
@@ -16,12 +21,14 @@ export default {
     name: 'Header',
     data() {
         return {
-            genreSelected: ''
+            genreSelected: '',
+            authorSelected: ''
         }
     },
     props: {
         logo: String,
-        albumGenre: Array
+        albumGenre: Array,
+        albumAuthors: Array
     }
 }
 </script>
@@ -41,7 +48,10 @@ header {
     }
 
     label {
-        margin-right: .3125rem;
+        margin: {
+            right: .625rem;
+            left: .9375rem
+        }
         color: #fff;
     }
 
