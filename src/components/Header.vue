@@ -1,10 +1,13 @@
 <template>
     <header>
         <img :src="logo" alt="Logo app">
-        <select name="selectGenre" id="selectGenre" v-model="genreSelected" @change="$emit('currentGenre', genreSelected)">
-            <option value="">Select genre</option>
-            <option v-for="(genre, index) in albumGenre" :key="index" :value="genre">{{genre}}</option>
-        </select>
+        <div>
+            <label for="selectGenre">Select genre</label>
+            <select name="selectGenre" id="selectGenre" v-model="genreSelected" @change="$emit('currentGenre', genreSelected)">
+                <option value="">All genre</option>
+                <option v-for="(genre, index) in albumGenre" :key="index" :value="genre">{{genre}}</option>
+            </select>
+        </div>
     </header>
 </template>
 
@@ -35,6 +38,11 @@ header {
 
     img {
         width: 4rem;
+    }
+
+    label {
+        margin-right: .3125rem;
+        color: #fff;
     }
 
     select {
